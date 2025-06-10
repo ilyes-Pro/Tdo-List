@@ -1,0 +1,86 @@
+/* font  */
+@font-face {
+    font-family: Alex;
+    src: url('../../public/font/Alexandria-Regular.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Alex;
+    src: url('../../public/font/Alexandria-Bold.ttf');
+    font-weight: bold;
+}
+
+
+@font-face {
+    font-family: Alex;
+    src: url('../../public/font/Alexandria-Black.ttf');
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: Alex;
+    src: url('../../public/font/Alexandria-Light.ttf');
+    font-weight: 200;
+}
+
+
+/* font  */
+
+
+
+
+
+
+
+
+.IconButton2 {
+
+    background-color: white !important;
+    border: solid #1769aa 3px !important;
+    color: #1769aa !important;
+}
+
+.IconButton3 {
+
+    background-color: white !important;
+    border: solid #b23c17 3px !important;
+    color: #b23c17 !important;
+}
+
+
+
+
+
+.efect {
+
+    transition: 0.3s !important;
+}
+
+.efect:hover {
+    background-color: rgba(255, 255, 255, 0.726) !important;
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.123) !important;
+
+}
+
+.css-1lt5qva-MuiCardContent-root:last-child {
+    padding-bottom: 18px !important;
+}
+
+.CardAnimtion {
+
+    transition: 0.3s !important;
+}
+
+.CardAnimtion:hover {
+    padding-block: 20px !important;
+    box-shadow: 0px 7px 7px rgba(17, 17, 17, 0.185) !important;
+
+}
+
+
+.Inpute {
+    width: 100% !important;
+    height: 100% !important;
+
+}
