@@ -37,8 +37,8 @@ export default function Todo(props) {
     const [open, setOpen] = React.useState(false);
     const [openUpdate, setOpenUpdate] = React.useState(false);
     const [Update, setUpdate] = useState({
-        title: "",
-        details: "",
+        title: props.Arry.title,
+        details: props.Arry.details,
     })
 
     // Delete
@@ -181,7 +181,7 @@ export default function Todo(props) {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleCloseUpdate}>إغلاق</Button>
-                        <Button onClick={UpdateText} autoFocus>
+                        <Button onClick={UpdateText} autoFocus disabled={!Update.title.trim() || !Update.details.trim()}>
                             تعديل
                         </Button>
                     </DialogActions>
@@ -201,7 +201,7 @@ export default function Todo(props) {
                     <Grid container spacing={2}>
                         <Grid size={{ xs: 6, md: 8 }} >
                             <Typography variant="h5" sx={{ textAlign: 'start', color: 'white', textDecoration: (props.Arry.comblet) && 'line-through', }} mb={0} gutterBottom>{props.Arry.title}</Typography>
-                            <Typography variant="h6" sx={{ textAlign: 'start', color: 'white', }} mb={0} gutterBottom>{props.Arry.details}</Typography>
+                            <Typography variant="h6" sx={{ textAlign: 'start', color: 'white', textDecoration: (props.Arry.comblet) && 'line-through', }} mb={0} gutterBottom>{props.Arry.details}</Typography>
                         </Grid>
                         <Grid size={{ xs: 6, md: 4 }} display="flex" justifyContent="space-between" alignItems="center" >
 

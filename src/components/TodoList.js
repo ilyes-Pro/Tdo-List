@@ -52,7 +52,11 @@ import { context01 } from '../context/context01';
 export default function TodoList() {
     const { ArryTodo, setArryTodo } = useContext(context01);
     // const [ArryTodo, setArryTodo] = useState(data);
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState({
+        Title: "",
+        details: "",
+
+    });
     const [list, setList] = useState("All");
 
     function handleList(e) {
@@ -134,15 +138,15 @@ export default function TodoList() {
     function handlClick() {
         let K = {
             id: uuidv4(),
-            title: title,
-            details: "",
+            title: title.Title,
+            details: title.details,
             comblet: false,
         }
 
         setArryTodo([...ArryTodo, K])
 
         localStorage.setItem("todos", JSON.stringify([...ArryTodo, K]))
-        setTitle("");
+        setTitle({ Title: "", details: "" });
     }
 
 
@@ -197,14 +201,15 @@ export default function TodoList() {
 
                         <Grid container spacing={2} mt={5}>
                             <Grid size={{ xs: 8 }}  >
-                                <TextField id="outlined-basic" label="عنوان المهمة" variant="outlined" className='Inpute' value={title}
-                                    onChange={(evet) => setTitle(evet.target.value)} />
+                                <TextField id="outlined-basic" label="عنوان المهمة" variant="outlined" className='Inpute' value={title.Title}
+                                    onChange={(evet) => setTitle({ ...title, Title: evet.target.value })} />
                             </Grid>
 
                             <Grid size={{ xs: 4 }} >
-                                <Button variant="contained" className='Inpute' color='primary' disabled={title == 0} onClick={() => handlClick()}>إضافة</Button>
+                                <Button variant="contained" className='Inpute' color='primary' disabled={!title.Title.trim() || !title.details.trim()} onClick={() => handlClick()}>إضافة</Button>
                             </Grid>
-
+                            <TextField id="outlined-basic" label="التفاصيل" variant="outlined" className='Inpute' value={title.details}
+                                onChange={(evet) => setTitle({ ...title, details: evet.target.value })} />
                         </Grid>
 
 
