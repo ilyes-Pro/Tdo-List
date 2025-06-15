@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import Card from '@mui/material/Card';
 
 import CardContent from '@mui/material/CardContent';
@@ -22,69 +24,69 @@ import { useContext, useState } from 'react';
 
 
 
-// compontent Dialog
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+// // compontent Dialog
+// import * as React from 'react';
+// import Button from '@mui/material/Button';
+// import Dialog from '@mui/material/Dialog';
+// import DialogActions from '@mui/material/DialogActions';
+// import DialogContent from '@mui/material/DialogContent';
+// import DialogContentText from '@mui/material/DialogContentText';
+// import DialogTitle from '@mui/material/DialogTitle';
 
 
 export default function Todo(props) {
     const { ArryTodo, setArryTodo } = useContext(context01);
-    const [open, setOpen] = React.useState(false);
-    const [openUpdate, setOpenUpdate] = React.useState(false);
-    const [Update, setUpdate] = useState({
-        title: props.Arry.title,
-        details: props.Arry.details,
-    })
+    // const [open, setOpen] = React.useState(false);
+    // const [openUpdate, setOpenUpdate] = React.useState(false);
+    // const [Update, setUpdate] = useState({
+    //     title: props.Arry.title,
+    //     details: props.Arry.details,
+    // })
 
     // Delete
     const handleClickOpen = () => {
-        setOpen(true);
+        props.deletOpen(props.Arry)
     };
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+    // const handleClose = () => {
+    //     setOpen(false);
+    // };
 
-    function Delete() {
-        const A = ArryTodo.filter((i) => props.Arry.id !== i.id)
-        setArryTodo(A);
-        localStorage.setItem("todos", JSON.stringify(A))
-    }
+    // function Delete() {
+    //     const A = ArryTodo.filter((i) => props.Arry.id !== i.id)
+    //     setArryTodo(A);
+    //     localStorage.setItem("todos", JSON.stringify(A))
+    // }
 
 
     // Update
 
-    function handleCloseUpdate() {
-        setOpenUpdate(false)
-
-
-    }
 
     function handleClickOpenUpdate() {
-        setOpenUpdate(true)
+        props.OpdateOpen(props.Arry)
 
     }
 
+    // function handleCloseUpdate() {
+    //     setOpenUpdate(false)
 
-    function UpdateText() {
-        const k = ArryTodo.map((i) => {
 
-            if (i.id == props.Arry.id) {
-                return { ...i, title: Update.title, details: Update.details, }
-            }
-            return i;
-        })
+    // }
 
-        setArryTodo(k);
-        localStorage.setItem("todos", JSON.stringify(k))
-        setOpenUpdate(false);
+    // function UpdateText() {
+    //     const k = ArryTodo.map((i) => {
 
-    }
+    //         if (i.id == props.Arry.id) {
+    //             return { ...i, title: Update.title, details: Update.details, }
+    //         }
+    //         return i;
+    //     })
+
+    //     setArryTodo(k);
+    //     localStorage.setItem("todos", JSON.stringify(k))
+    //     setOpenUpdate(false);
+
+    // }
 
 
     // comblet
@@ -107,7 +109,7 @@ export default function Todo(props) {
 
 
 
-            <React.Fragment>
+            {/* <React.Fragment>
 
                 <Dialog
                     style={{ direction: "rtl", }}
@@ -138,10 +140,10 @@ export default function Todo(props) {
 
 
 
-            </React.Fragment>
+            </React.Fragment> */}
 
 
-            <React.Fragment>
+            {/* <React.Fragment>
 
                 <Dialog
                     style={{ direction: "rtl", }}
@@ -190,7 +192,7 @@ export default function Todo(props) {
 
 
 
-            </React.Fragment>
+            </React.Fragment> */}
 
 
             <Card className='CardAnimtion' sx={{ minWidth: 275, background: '#283593', mt: 2, }} >
