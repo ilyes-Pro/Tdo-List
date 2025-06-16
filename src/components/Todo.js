@@ -3,7 +3,7 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 
 import CardContent from '@mui/material/CardContent';
-
+import { Snkb } from '../context/SnackbarContext';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
@@ -19,6 +19,9 @@ import './style.css'
 
 // context
 import { context01 } from '../context/context01';
+
+
+
 import { useContext, useState } from 'react';
 
 
@@ -35,6 +38,7 @@ import { useContext, useState } from 'react';
 
 
 export default function Todo(props) {
+    const { openSnackbar } = useContext(Snkb);
     const { ArryTodo, setArryTodo } = useContext(context01);
     // const [open, setOpen] = React.useState(false);
     // const [openUpdate, setOpenUpdate] = React.useState(false);
@@ -102,6 +106,10 @@ export default function Todo(props) {
 
         setArryTodo(A);
         localStorage.setItem("todos", JSON.stringify(A))
+        console.log(props.comblet)
+        if (props.Arry.comblet) {
+            openSnackbar("تم إكتمال المهمة")
+        }
     }
 
     return (

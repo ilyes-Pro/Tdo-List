@@ -22,7 +22,7 @@ import { useState, useContext, useEffect, useMemo } from 'react';
 
 // context
 import { context01 } from '../context/context01';
-
+import { Snkb } from '../context/SnackbarContext';
 
 
 // compontent Dialog
@@ -37,6 +37,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 export default function TodoList() {
+    // context
+    const { ArryTodo, setArryTodo } = useContext(context01);
+    const { openSnackbar } = useContext(Snkb);
+
+
+
     const [open, setOpen] = React.useState(false);
     // const [Update, setUpdate] = useState({
     //     title: "",
@@ -45,7 +51,7 @@ export default function TodoList() {
 
     const [openUpdate, setOpenUpdate] = React.useState(false);
     const [listId, setlistId] = React.useState(null);
-    const { ArryTodo, setArryTodo } = useContext(context01);
+
     const [title, setTitle] = useState({
         Title: "",
         details: "",
@@ -69,6 +75,7 @@ export default function TodoList() {
         setArryTodo(A);
         localStorage.setItem("todos", JSON.stringify(A))
         setOpen(false);
+        openSnackbar("تم الحذف")
     }
 
 
@@ -104,8 +111,10 @@ export default function TodoList() {
         })
 
         setArryTodo(k);
+        openSnackbar();
         localStorage.setItem("todos", JSON.stringify(k))
-        setOpenUpdate(false);
+        setOpenUpdate(false)
+        openSnackbar("تم التعديل")
 
     }
 
@@ -179,6 +188,8 @@ export default function TodoList() {
 
         localStorage.setItem("todos", JSON.stringify([...ArryTodo, K]))
         setTitle({ Title: "", details: "" });
+        openSnackbar("تم إنشاء المهة")
+
     }
 
 

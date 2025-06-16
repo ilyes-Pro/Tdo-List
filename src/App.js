@@ -10,7 +10,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { context01 } from './context/context01';
 import { useState } from 'react';
 import { blue } from '@mui/material/colors';
-
+import SimpleSnackbar from './components/Snackbar';
+import { Snkb } from './context/SnackbarContext';
 
 
 const theme = createTheme({
@@ -51,8 +52,15 @@ function App() {
 
 
   const [ArryTodo, setArryTodo] = useState([]);
-
-
+  const [open, setOpen] = useState(false);
+  const [Message, setMessage] = useState("");
+  function openSnackbar(message) {
+    setMessage(message)
+    setOpen(true)
+    setTimeout(() => {
+      setOpen(false)
+    }, 2000)
+  }
   return (
     <ThemeProvider theme={theme}>
       <div className='App' style={{
@@ -65,10 +73,14 @@ function App() {
         direction: "rtl",
       }}  >
 
+        <Snkb.Provider value={{ openSnackbar }}>
+          <context01.Provider value={{ ArryTodo, setArryTodo }}>
+            <TodoList />
 
-        <context01.Provider value={{ ArryTodo, setArryTodo }}>
-          <TodoList />
-        </context01.Provider>
+          </context01.Provider>
+        </Snkb.Provider>
+        < SimpleSnackbar open={open} message={Message} />
+
       </div></ThemeProvider>
   );
 }
