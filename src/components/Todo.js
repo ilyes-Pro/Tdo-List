@@ -3,7 +3,7 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 
 import CardContent from '@mui/material/CardContent';
-import { Snkb } from '../context/SnackbarContext';
+import { useSnkb2 } from '../context/SnackbarContext';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
@@ -38,7 +38,7 @@ import { useContext, useState } from 'react';
 
 
 export default function Todo(props) {
-    const { openSnackbar } = useContext(Snkb);
+    const { openSnackbar } = useSnkb2();
     const { ArryTodo, setArryTodo } = useContext(context01);
     // const [open, setOpen] = React.useState(false);
     // const [openUpdate, setOpenUpdate] = React.useState(false);

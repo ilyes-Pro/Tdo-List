@@ -22,7 +22,7 @@ import { useState, useContext, useEffect, useMemo } from 'react';
 
 // context
 import { context01 } from '../context/context01';
-import { Snkb } from '../context/SnackbarContext';
+import { useSnkb2 } from '../context/SnackbarContext';
 
 
 // compontent Dialog
@@ -39,7 +39,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 export default function TodoList() {
     // context
     const { ArryTodo, setArryTodo } = useContext(context01);
-    const { openSnackbar } = useContext(Snkb);
+    const { openSnackbar } = useSnkb2();
 
 
 
