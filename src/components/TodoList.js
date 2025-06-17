@@ -15,10 +15,10 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 //Components 
 import Todo from './Todo';
-import { v4 as uuidv4 } from 'uuid';
 
-import { useState, useContext, useEffect, useMemo } from 'react';
 
+import { useState, useContext, useEffect, useMemo, useReducer } from 'react';
+import Reducer1 from '../TodoReducer/todoListReducer';
 
 // context
 import { context01 } from '../context/context01';
@@ -38,11 +38,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 export default function TodoList() {
     // context
-    const { ArryTodo, setArryTodo } = useContext(context01);
+    const { ArryTodo2, setArryTodo } = useContext(context01);
     const { openSnackbar } = useSnkb2();
 
 
-
+    const [ArryTodo, dispatch] = useReducer(Reducer1, []);
     const [open, setOpen] = React.useState(false);
     // const [Update, setUpdate] = useState({
     //     title: "",
@@ -177,22 +177,18 @@ export default function TodoList() {
 
 
     function handlClick() {
-        let K = {
-            id: uuidv4(),
-            title: title.Title,
-            details: title.details,
-            comblet: false,
-        }
+        dispatch({
+            type: "added",
+            payloud: {
+                title: title.Title,
+                details: title.details,
+            },
 
-        setArryTodo([...ArryTodo, K])
+        })
 
-        localStorage.setItem("todos", JSON.stringify([...ArryTodo, K]))
         setTitle({ Title: "", details: "" });
         openSnackbar("تم إنشاء المهة")
-
     }
-
-
 
     return (
         <>
