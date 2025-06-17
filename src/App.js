@@ -4,13 +4,13 @@ import TodoList from './components/TodoList'
 import './components/style.css'
 
 import { ToastProvider } from './context/SnackbarContext';
-
+import { ReducerProvider } from './context/context01';
 
 
 // context
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { context01 } from './context/context01';
-import { useState } from 'react';
+
+
 import { blue } from '@mui/material/colors';
 
 
@@ -25,33 +25,10 @@ const theme = createTheme({
 });
 
 function App() {
-  // const data = [
-  //   {
-  //     id: uuidv4(),
-  //     title: 'slam',
-  //     details: 'lksdfsdff',
-  //     comblet: false,
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     title: 'slam',
-  //     details: 'lksdfsdff',
-  //     comblet: false,
 
-  //   },
-
-  //   {
-  //     id: uuidv4(),
-  //     title: 'slam',
-  //     details: 'lksdfsdff',
-  //     comblet: false,
-
-  //   },
-
-  // ];
+  // const [ArryTodo, setArryTodo] = useState([]);
 
 
-  const [ArryTodo, setArryTodo] = useState([]);
   // const [open, setOpen] = useState(false);
   // const [Message, setMessage] = useState("");
 
@@ -65,34 +42,39 @@ function App() {
 
   return (
 
-    <ToastProvider>
+    <ThemeProvider theme={theme}>
 
-      <ThemeProvider theme={theme}>
-        <div className='App' style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          background: "#191b1f",
+      <ToastProvider>
 
-          direction: "rtl",
-        }}  >
+        <ReducerProvider>
+          <div className='App' style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            background: "#191b1f",
 
-          {/* <Snkb.Provider value={{ openSnackbar }}> */}
+            direction: "rtl",
+          }}  >
+
+            {/* <Snkb.Provider value={{ openSnackbar }}> */}
 
 
-          <context01.Provider value={{ ArryTodo, setArryTodo }}>
+
             <TodoList />
-          </context01.Provider>
 
 
 
-          {/* </Snkb.Provider> */}
-          {/* < SimpleSnackbar open={open} message={Message} /> */}
 
-        </div></ThemeProvider>
-    </ToastProvider>
+            {/* </Snkb.Provider> */}
+            {/* < SimpleSnackbar open={open} message={Message} /> */}
 
+          </div>
+        </ReducerProvider>
+      </ToastProvider>
+
+
+    </ThemeProvider>
   );
 }
 

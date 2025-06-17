@@ -15,14 +15,14 @@ export default function Reducer1(result, action) {
             //  setArryTodo([...ArryTodo, K])
             return [...result, K];
 
-            break;
+
 
         case "delete":
             const A = result.filter((i) => action.payloud.id !== i.id)
             localStorage.setItem("todos", JSON.stringify(A))
             return (A);
 
-            break;
+
 
 
         case "update":
@@ -37,13 +37,27 @@ export default function Reducer1(result, action) {
             localStorage.setItem("todos", JSON.stringify(k))
             return (k);
 
-            break
+
 
         case "get":
             const storagetodos = JSON.parse(localStorage.getItem("todos")) ?? [];
             return (storagetodos);
 
-            break
+
+
+        case "comblet":
+            const l = result.map((i) => {
+
+                if (action.payloud.id === i.id) {
+                    // i.comblet = !i.comblet;
+                    return { ...i, comblet: !i.comblet, }
+                }
+                return i;
+            });
+            localStorage.setItem("todos", JSON.stringify(l))
+            return (l);
+
+
 
 
 

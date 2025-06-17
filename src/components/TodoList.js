@@ -18,10 +18,10 @@ import Todo from './Todo';
 
 
 import { useState, useContext, useEffect, useMemo, useReducer } from 'react';
-import Reducer1 from '../TodoReducer/todoListReducer';
+
 
 // context
-import { context01 } from '../context/context01';
+import { useReducerContext } from '../context/context01';
 import { useSnkb2 } from '../context/SnackbarContext';
 
 
@@ -42,8 +42,10 @@ export default function TodoList() {
 
     const { openSnackbar } = useSnkb2();
 
+    const { ArryTodo, dispatch } = useReducerContext();
 
-    const [ArryTodo, dispatch] = useReducer(Reducer1, []);
+    // const [ArryTodo, dispatch] = useReducer(Reducer1, []);
+
     const [open, setOpen] = React.useState(false);
     // const [Update, setUpdate] = useState({
     //     title: "",

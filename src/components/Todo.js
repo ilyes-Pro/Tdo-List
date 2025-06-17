@@ -17,54 +17,21 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import './style.css'
 
 
-// context
-import { context01 } from '../context/context01';
-
-
-
-import { useContext, useState } from 'react';
-
-
-
-
-// // compontent Dialog
-// import * as React from 'react';
-// import Button from '@mui/material/Button';
-// import Dialog from '@mui/material/Dialog';
-// import DialogActions from '@mui/material/DialogActions';
-// import DialogContent from '@mui/material/DialogContent';
-// import DialogContentText from '@mui/material/DialogContentText';
-// import DialogTitle from '@mui/material/DialogTitle';
+// context 
+import { useReducerContext } from '../context/context01';
 
 
 export default function Todo(props) {
     const { openSnackbar } = useSnkb2();
-    const { ArryTodo, setArryTodo } = useContext(context01);
+    const { ArryTodo, dispatch } = useReducerContext();
 
-    // const [open, setOpen] = React.useState(false);
-    // const [openUpdate, setOpenUpdate] = React.useState(false);
-    // const [Update, setUpdate] = useState({
-    //     title: props.Arry.title,
-    //     details: props.Arry.details,
-    // })
+    // const { ArryTodo, setArryTodo } = useContext(context01);
 
-    // Delete
+
     const handleClickOpen = () => {
         props.deletOpen(props.Arry)
     };
 
-    // const handleClose = () => {
-    //     setOpen(false);
-    // };
-
-    // function Delete() {
-    //     const A = ArryTodo.filter((i) => props.Arry.id !== i.id)
-    //     setArryTodo(A);
-    //     localStorage.setItem("todos", JSON.stringify(A))
-    // }
-
-
-    // Update
 
 
     function handleClickOpenUpdate() {
@@ -72,136 +39,26 @@ export default function Todo(props) {
 
     }
 
-    // function handleCloseUpdate() {
-    //     setOpenUpdate(false)
 
-
-    // }
-
-    // function UpdateText() {
-    //     const k = ArryTodo.map((i) => {
-
-    //         if (i.id == props.Arry.id) {
-    //             return { ...i, title: Update.title, details: Update.details, }
-    //         }
-    //         return i;
-    //     })
-
-    //     setArryTodo(k);
-    //     localStorage.setItem("todos", JSON.stringify(k))
-    //     setOpenUpdate(false);
-
-    // }
 
 
     // comblet
     function handleClike() {
 
-        const A = ArryTodo.map((i) => {
+        dispatch({
+            type: "comblet",
+            payloud: {
+                id: props.Arry.id,
+            },
+        })
 
-            if (props.Arry.id === i.id) {
-                i.comblet = !i.comblet;
-            }
-            return i;
-        });
-
-        setArryTodo(A);
-        localStorage.setItem("todos", JSON.stringify(A))
-        console.log(props.comblet)
-        if (props.Arry.comblet) {
+        if (!props.Arry.comblet) {
             openSnackbar("تم إكتمال المهمة")
         }
     }
 
     return (
         <>
-
-
-
-            {/* <React.Fragment>
-
-                <Dialog
-                    style={{ direction: "rtl", }}
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">
-                        {"هل أنت متأكد من رغبتك في حدف هذه المهمة؟"}
-                    </DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            . لا يمكنك التراجع عن الحذف بعد إتمامه
-                        </DialogContentText>
-
-
-
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose}>إغلاق</Button>
-                        <Button onClick={Delete} autoFocus>
-                            نعم,قم بالحذف
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-
-
-
-
-            </React.Fragment> */}
-
-
-            {/* <React.Fragment>
-
-                <Dialog
-                    style={{ direction: "rtl", }}
-                    open={openUpdate}
-                    onClose={handleCloseUpdate}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">
-                        {"هل أنت متأكد من رغبتك في حدف هذه المهمة؟"}
-                    </DialogTitle>
-                    <DialogContent>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            name="title"
-                            label="عنوان"
-                            fullWidth
-                            variant="standard"
-                            value={Update.title}
-                            onChange={(e) => setUpdate({ ...Update, title: e.target.value, })}
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            name="details"
-                            label="تفاصيل"
-                            fullWidth
-                            variant="standard"
-                            value={Update.details}
-                            onChange={(e) => setUpdate({ ...Update, details: e.target.value, })}
-                        />
-
-
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleCloseUpdate}>إغلاق</Button>
-                        <Button onClick={UpdateText} autoFocus disabled={!Update.title.trim() || !Update.details.trim()}>
-                            تعديل
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-
-
-
-
-            </React.Fragment> */}
 
 
             <Card className='CardAnimtion' sx={{ minWidth: 275, background: '#283593', mt: 2, }} >
