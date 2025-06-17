@@ -38,7 +38,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 export default function TodoList() {
     // context
-    const { ArryTodo2, setArryTodo } = useContext(context01);
+    // const { ArryTodo2, setArryTodo } = useContext(context01);
+
     const { openSnackbar } = useSnkb2();
 
 
@@ -71,9 +72,14 @@ export default function TodoList() {
     };
 
     function Delete() {
-        const A = ArryTodo.filter((i) => listId.id !== i.id)
-        setArryTodo(A);
-        localStorage.setItem("todos", JSON.stringify(A))
+
+        dispatch({
+            type: "delete",
+            payloud: {
+                id: listId.id,
+            },
+
+        })
         setOpen(false);
         openSnackbar("تم الحذف")
     }
@@ -102,17 +108,17 @@ export default function TodoList() {
 
 
     function UpdateText() {
-        const k = ArryTodo.map((i) => {
+        dispatch({
+            type: "update",
+            payloud: {
+                id: listId.id,
+                title: listId.title,
+                details: listId.details,
+            },
 
-            if (i.id == listId.id) {
-                return { ...i, title: listId.title, details: listId.details, }
-            }
-            return i;
         })
 
-        setArryTodo(k);
-        openSnackbar();
-        localStorage.setItem("todos", JSON.stringify(k))
+
         setOpenUpdate(false)
         openSnackbar("تم التعديل")
 
@@ -169,8 +175,9 @@ export default function TodoList() {
 
 
     useEffect(() => {
-        const storagetodos = JSON.parse(localStorage.getItem("todos")) ?? [];
-        setArryTodo(storagetodos);
+
+        dispatch({ type: "get", })
+
 
     }, []);
 
